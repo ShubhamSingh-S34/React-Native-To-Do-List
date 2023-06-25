@@ -7,9 +7,13 @@ import GoalInput from './components/GoalInput';
 
 export default function App() {
 
-
+  const [modalIsVisible, setModalIsVisible] = useState(false);
   const [goalsList, setGoalsList] = useState([]);
 
+
+  function openModalHandler() {
+    setModalIsVisible(true);
+  }
 
   function addGoalHandler(enteredGoalText) {
     // console.log(enteredGoalText);
@@ -28,7 +32,8 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput addGoal={addGoalHandler} />
+      <Button onPress={openModalHandler} title='Add Goal' />
+      <GoalInput addGoal={addGoalHandler} visible={modalIsVisible} setVisible={setModalIsVisible} />
       <View style={styles.goalsContainer}>
         <ScrollView>
           {
